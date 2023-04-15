@@ -41,16 +41,14 @@ function updateSlide(i) {
 
 function changeDirection(direction) {
   if (direction === "left") {
-    slideIndice--;
-    console.log("valeur initiale de slideIndice:" + slideIndice);
     if (slideIndice <= 0) {
       slideIndice = slides.length;
     }
     updateDot(-1);
     updateSlide(-1);
+    slideIndice--;
   } else {
     slideIndice++;
-    console.log("indice initital est" + slideIndice);
     if (slideIndice >= slides.length) {
       slideIndice = 0;
     }
