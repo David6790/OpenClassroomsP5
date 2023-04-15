@@ -35,34 +35,41 @@ function updateDot() {
   });
 }
 
+function updateSlide(i) {
+  slideImage.src = "./assets/images/slideshow/" + slides[slideIndice + i].image;
+  slideTagLine.innerHTML = slides[slideIndice + i].tagLine;
+}
+
+function changeDirection(direction) {
+  if (direction === "left") {
+    dotIndice--;
+    if (slideIndice <= 0) {
+      slideIndice = slides.length;
+    }
+    if (dotIndice < 0) {
+      dotIndice = dots.length - 1;
+    }
+    updateDot();
+    updateSlide(-1);
+    slideIndice--;
+  } else {
+    dotIndice++;
+    if (slideIndice >= slides.length - 1) {
+      slideIndice = -1;
+    }
+    if (dotIndice >= dots.length) {
+      dotIndice = 0;
+    }
+    updateDot();
+    updateSlide(1);
+    slideIndice++;
+  }
+}
+
 document.querySelector(".arrow_left").addEventListener("click", function () {
-  dotIndice--;
-  if (slideIndice <= 0) {
-    slideIndice = slides.length;
-  }
-  if (dotIndice < 0) {
-    dotIndice = dots.length - 1;
-  }
-
-  updateDot();
-
-  slideImage.src = "./assets/images/slideshow/" + slides[slideIndice - 1].image;
-  slideTagLine.innerHTML = slides[slideIndice - 1].tagLine;
-  slideIndice--;
+  changeDirection("left");
 });
 
 document.querySelector(".arrow_right").addEventListener("click", function () {
-  dotIndice++;
-  if (slideIndice >= slides.length - 1) {
-    slideIndice = -1;
-  }
-  if (dotIndice >= dots.length) {
-    dotIndice = 0;
-  }
-
-  updateDot();
-
-  slideImage.src = "./assets/images/slideshow/" + slides[slideIndice + 1].image;
-  slideTagLine.innerHTML = slides[slideIndice + 1].tagLine;
-  slideIndice++;
+  changeDirection("right");
 });
