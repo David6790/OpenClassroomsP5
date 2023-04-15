@@ -56,11 +56,11 @@ function changeDirection(direction) {
     updateSlide(0);
   }
 }
-
+// eventlistner pour la gauche
 document.querySelector(".arrow_left").addEventListener("click", function () {
   changeDirection("left");
 });
-
+// eventlistner pour la droite
 document.querySelector(".arrow_right").addEventListener("click", function () {
   changeDirection("right");
 });
