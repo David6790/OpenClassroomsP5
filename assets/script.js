@@ -18,16 +18,15 @@ const slides = [
   },
 ];
 
-const slideImage = document.querySelector(" .banner-img");
+const slideImage = document.querySelector(" #banner-slide");
 const slideTagLine = document.querySelector("#banner > p");
 let slideIndice = 0;
 
 const dots = document.querySelectorAll(".dot");
-let dotIndice = 0;
 
-function updateDot() {
+function updateDot(i) {
   dots.forEach(function (dot, index) {
-    if (index === dotIndice) {
+    if (index === slideIndice + i) {
       dot.classList.add("dot_selected");
     } else {
       dot.classList.remove("dot_selected");
@@ -42,27 +41,21 @@ function updateSlide(i) {
 
 function changeDirection(direction) {
   if (direction === "left") {
-    dotIndice--;
+    slideIndice--;
+    console.log("valeur initiale de slideIndice:" + slideIndice);
     if (slideIndice <= 0) {
       slideIndice = slides.length;
     }
-    if (dotIndice < 0) {
-      dotIndice = dots.length - 1;
-    }
-    updateDot();
+    updateDot(-1);
     updateSlide(-1);
-    slideIndice--;
   } else {
-    dotIndice++;
-    if (slideIndice >= slides.length - 1) {
-      slideIndice = -1;
-    }
-    if (dotIndice >= dots.length) {
-      dotIndice = 0;
-    }
-    updateDot();
-    updateSlide(1);
     slideIndice++;
+    console.log("indice initital est" + slideIndice);
+    if (slideIndice >= slides.length) {
+      slideIndice = 0;
+    }
+    updateDot(0);
+    updateSlide(0);
   }
 }
 
